@@ -38,7 +38,6 @@ import healthcheck from './plugins/healthcheck';
 import auth from './plugins/auth';
 import catalog from './plugins/catalog';
 import kubernetes from './plugins/kubernetes';
-import rollbar from './plugins/rollbar';
 import scaffolder from './plugins/scaffolder';
 import sentry from './plugins/sentry';
 import proxy from './plugins/proxy';
@@ -75,7 +74,6 @@ async function main() {
   const scaffolderEnv = useHotMemoize(module, () => createEnv('scaffolder'));
   const authEnv = useHotMemoize(module, () => createEnv('auth'));
   const proxyEnv = useHotMemoize(module, () => createEnv('proxy'));
-  const rollbarEnv = useHotMemoize(module, () => createEnv('rollbar'));
   const sentryEnv = useHotMemoize(module, () => createEnv('sentry'));
   const techdocsEnv = useHotMemoize(module, () => createEnv('techdocs'));
   const kubernetesEnv = useHotMemoize(module, () => createEnv('kubernetes'));
@@ -84,7 +82,6 @@ async function main() {
 
   const apiRouter = Router();
   apiRouter.use('/catalog', await catalog(catalogEnv));
-  apiRouter.use('/rollbar', await rollbar(rollbarEnv));
   apiRouter.use('/scaffolder', await scaffolder(scaffolderEnv));
   apiRouter.use('/sentry', await sentry(sentryEnv));
   apiRouter.use('/auth', await auth(authEnv));
