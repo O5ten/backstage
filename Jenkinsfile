@@ -1,3 +1,4 @@
+library 'stable'
 pipeline {
     agent {
         label 'linux'
