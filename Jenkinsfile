@@ -50,8 +50,10 @@ pipeline {
                     }
                 }
                 stage('Restart Backstage node in AWS') {
-                    withAmazon {
-                        echo 'Restarted the AWS node, that also reprovisions it'
+                    steps {
+                        withAmazon {
+                            echo 'Restarted the AWS node, that also reprovisions it'
+                        }
                     }
                 }
             }
