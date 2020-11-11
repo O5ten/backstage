@@ -43,10 +43,10 @@ pipeline {
                 stage('Publish') {
                     steps {
                         sh '''
-                            docker tag A nexus.se.telenor.net:4444/backstage/backend
-                            docker tag A nexus.se.telenor.net:4444/backstage/app
-                            docker push nexus.se.telenor.net:4444/backstage/backend
-                            docker push nexus.se.telenor.net:4444/backstage/app
+                            docker tag example-backend nexus.se.telenor.net:4444/backstage/backstage-backend
+                            docker tag spotify/backstage nexus.se.telenor.net:4444/backstage/backstage-frontend
+                            docker push nexus.se.telenor.net:4444/backstage/backstage-backend
+                            docker push nexus.se.telenor.net:4444/backstage/backstage-frontend
                         '''
                     }
                 }
