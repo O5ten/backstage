@@ -51,9 +51,26 @@ pipeline {
                     }
                 }
                 stage('Restart Backstage node in AWS') {
+                    environment {
+                        INSTANCE_ID='i-0a38e4c0fe26b9c18'
+                    }
                     steps {
-                        withAmazon {
-                            echo 'Restarted the AWS node, that also reprovisions it'
+                        withAmazon(credentialsId: 'TELENOR_SE_DEVSUPPORT_DERP_JENKINS') {
+                            sh """
+                                aws ec2 stop-instances --instance-ids $INSTANCE_ID
+                                aws ec2 wait instance-stopped --instance-ids $INSTANCE_ID
+                                aws ec2 start-instances --instance-ids $INSTANCE_ID
+                                aws ec2 wait instance-status-ok --instance-ids $INSTANCE_ID
+                            """
+                        }
+                    }
+                }
+                stage('Verify Backstage Status') {
+                    steps {
+                        timeout(time: 5, unit: 'MINUTES') {
+                            waitUntil {
+                                httpRequest url: 'http://10.82.7.71'
+                            }
                         }
                     }
                 }
