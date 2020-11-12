@@ -4,9 +4,9 @@ app:
   googleAnalyticsTrackingId: # UA-000000-0
 
 backend:
-  baseUrl: http://10.82.7.71:7000
+  baseUrl: http://10.82.7.71:8080
   listen:
-    port: 7000
+    port: 8080
   database:
     client: postgres
     connection:
@@ -45,8 +45,8 @@ organization:
   name: Telenor Sweden AB
 
 techdocs:
-  storageUrl: http://10.82.7.71:7000/api/techdocs/static/docs
-  requestUrl: http://10.82.7.71:7000/api/techdocs
+  storageUrl: http://10.82.7.71:8080/api/techdocs/static/docs
+  requestUrl: http://10.82.7.71:8080/api/techdocs
   generators:
     techdocs: 'docker'
 
