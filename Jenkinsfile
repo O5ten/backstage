@@ -67,9 +67,11 @@ pipeline {
                 }
                 stage('Verify Backstage Status') {
                     steps {
-                        timeout(time: 5, unit: 'MINUTES') {
-                            waitUntil {
-                                httpRequest url: 'http://10.82.7.71'
+                        script {
+                            timeout(time: 5, unit: 'MINUTES') {
+                                waitUntil {
+                                    httpRequest(url: 'http://10.82.7.71').status == 200
+                                }
                             }
                         }
                     }
