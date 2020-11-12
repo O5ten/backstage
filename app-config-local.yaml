@@ -1,25 +1,21 @@
 app:
   title: Jarvis
-  baseUrl: http://10.82.7.71:8000
+  baseUrl: http://localhost:8000
   googleAnalyticsTrackingId: # UA-000000-0
 
 backend:
-  baseUrl: http://backstage-backend:7000
+  baseUrl: http://localhost:7000
   listen:
     port: 7000
   database:
     client: postgres
     connection:
-      host: 
-        $env: POSTGRES_HOST
-      port: 
-        $env: POSTGRES_PORT
-      user: 
-        $env: POSTGRES_USERNAME
-      password: 
-        $env: POSTGRES_PASSWORD
+      host: localhost
+      port: 5432
+      user: backstage
+      password: backstage
   cors:
-    origin: http://10.82.7.71:8000
+    origin: http://localhost:8000
     methods: [GET, OPTIONS, POST, PUT, DELETE]
     credentials: true
   csp:
@@ -45,8 +41,8 @@ organization:
   name: Telenor Sweden AB
 
 techdocs:
-  storageUrl: http://10.82.7.71:7000/api/techdocs/static/docs
-  requestUrl: http://10.82.7.71:7000/api/techdocs
+  storageUrl: http://localhost:7000/api/techdocs/static/docs
+  requestUrl: http://localhost:7000/api/techdocs
   generators:
     techdocs: 'docker'
 
