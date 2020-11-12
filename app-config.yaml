@@ -1,6 +1,6 @@
 app:
   title: Jarvis
-  baseUrl: http://10.82.7.71:8000
+  baseUrl: http://10.82.7.71
   googleAnalyticsTrackingId: # UA-000000-0
 
 backend:
@@ -19,7 +19,7 @@ backend:
       password: 
         $env: POSTGRES_PASSWORD
   cors:
-    origin: http://10.82.7.71:8000
+    origin: http://10.82.7.71
     methods: [GET, OPTIONS, POST, PUT, DELETE]
     credentials: true
   csp:
