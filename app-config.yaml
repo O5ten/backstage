@@ -4,7 +4,7 @@ app:
   googleAnalyticsTrackingId: # UA-000000-0
 
 backend:
-  baseUrl: http://backstage-backend:7000
+  baseUrl: http://10.82.7.71:7000
   listen:
     port: 7000
   database:
