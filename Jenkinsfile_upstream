@@ -1,4 +1,6 @@
-configureUser() {
+library 'stable'
+
+def configureUser() {
     sh """
         git config user.name "$getBuildUserName()"
         git config user.email "${getBuildUserEmail()}"
@@ -6,7 +8,6 @@ configureUser() {
         git config branch.autoSetupMerge always
     """
 }
-
 
 pipeline {
     agent{
