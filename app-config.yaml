@@ -1,10 +1,10 @@
 app:
   title: Jarvis
-  baseUrl: http://10.82.7.71
+  baseUrl: http://backstage.se.telenor.net
   googleAnalyticsTrackingId: # UA-000000-0
 
 backend:
-  baseUrl: http://10.82.7.71:8080
+  baseUrl: http://backstage.se.telenor.net:8080
   listen:
     port: 8080
   database:
@@ -19,7 +19,7 @@ backend:
       password: 
         $env: POSTGRES_PASSWORD
   cors:
-    origin: http://10.82.7.71
+    origin: http://backstage.se.telenor.net
     methods: [GET, OPTIONS, POST, PUT, DELETE]
     credentials: true
   csp:
@@ -45,8 +45,8 @@ organization:
   name: Telenor Sweden AB
 
 techdocs:
-  storageUrl: http://10.82.7.71:8080/api/techdocs/static/docs
-  requestUrl: http://10.82.7.71:8080/api/techdocs
+  storageUrl: http://backstage.se.telenor.net:8080/api/techdocs/static/docs
+  requestUrl: http://backstage.se.telenor.net:8080/api/techdocs
   generators:
     techdocs: 'docker'
 

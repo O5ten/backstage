@@ -1,3 +1,13 @@
+configureUser() {
+    sh """
+        git config user.name "$getBuildUserName()"
+        git config user.email "${getBuildUserEmail()}"
+        git config push.default current
+        git config branch.autoSetupMerge always
+    """
+}
+
+
 pipeline {
     agent{
         label 'linux'
@@ -9,6 +19,7 @@ pipeline {
         stage('Pull backstage github'){
             steps {
                 git url: 'https://github.com/backstage/backstage', branch: 'master'
+                sh 'git checkout -b upstream'
             }
         }
         stage('Push upstream branch') {
