@@ -1,0 +1,22 @@
+pipeline {
+    agent{
+        label 'linux'
+    }
+    triggers {
+        cron 'H 3 * * *'
+    }
+    stages {
+        stage('Pull backstage github'){
+            steps {
+                git url: 'https://github.com/backstage/backstage', branch: 'master'
+            }
+        }
+        stage('Push upstream branch') {
+            steps {
+                withCredentials([usernamePassword(credentialsId: 'JENKINS_CI_GHE_TOKEN', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
+                    sh "git push https://${GIT_PASSWORD}:x-oauth-basic@ghe.gc.telenor.com/TelenorSweden/backstage upstream"
+                }
+            }
+        }
+    }
+}
