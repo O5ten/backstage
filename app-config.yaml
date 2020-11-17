@@ -41,6 +41,12 @@ proxy:
 sonarQube:
   baseUrl: https://sonar.se.telenor.net
 
+  '/buildkite/api':
+    target: https://api.buildkite.com/v2/
+    headers:
+      Authorization:
+        $env: BUILDKITE_TOKEN
+
 organization:
   name: Telenor Sweden AB
 
