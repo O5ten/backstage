@@ -56,12 +56,10 @@ pipeline {
                     }
                     steps {
                         withAmazon(credentialsId: 'TELENOR_SE_DEVSUPPORT_DERP_JENKINS') {
-                            catchError {//If it was already off then this may fail.
-                                sh """
-                                    aws ec2 stop-instances --instance-ids $INSTANCE_ID
-                                    aws ec2 wait instance-stopped --instance-ids $INSTANCE_ID
-                                """
-                            }
+                            sh """
+                                aws ec2 stop-instances --instance-ids $INSTANCE_ID
+                                aws ec2 wait instance-stopped --instance-ids $INSTANCE_ID
+                            """
                             sh """
                                 aws ec2 start-instances --instance-ids $INSTANCE_ID
                                 aws ec2 wait instance-status-ok --instance-ids $INSTANCE_ID
