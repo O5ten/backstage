@@ -67,7 +67,7 @@ kubernetes:
 
 integrations:
   github:
-    - host: https://ghe.gc.telenor.com
+    - host: ghe.gc.telenor.com
       apiBaseUrl: https://ghe.gc.telenor.com/api/v3
       token:
         $env: GITHUB_TOKEN
