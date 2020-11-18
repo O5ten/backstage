@@ -55,7 +55,7 @@ techdocs:
   storageUrl: http://backstage.se.telenor.net:8080/api/techdocs/static/docs
   requestUrl: http://backstage.se.telenor.net:8080/api/techdocs
   generators:
-    techdocs: 'docker'
+    techdocs: local
 
 sentry:
   organization: my-company
