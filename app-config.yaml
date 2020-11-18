@@ -74,6 +74,9 @@ integrations:
         $env: GITHUB_TOKEN
   
 catalog:
+  locations: 
+    - type: url
+      target: https://ghe.gc.telenor.com/TelenorSweden/techdocs-template/blob/master/template.yaml
   rules:
     - allow: [Component, API, Group, User, Template, Location]
 
