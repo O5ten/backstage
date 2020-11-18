@@ -36,11 +36,6 @@ export const apis = [
     deps: { errorApi: errorApiRef, githubAuthApi: githubAuthApiRef },
     factory: ({ errorApi, githubAuthApi }) =>
       GraphQLEndpoints.from([
-        GraphQLEndpoints.create({
-          id: 'gitlab',
-          title: 'GitLab',
-          url: 'https://gitlab.com/api/graphql',
-        }),
         GraphQLEndpoints.github({
           id: 'github',
           title: 'GitHub',

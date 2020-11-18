@@ -19,6 +19,7 @@
     "@backstage/plugin-graphiql": "^0.2.0",
     "@backstage/plugin-jenkins": "^0.2.0",
     "@backstage/plugin-kubernetes": "^0.2.0",
+    "@backstage/plugin-sonarqube": "^0.1.2",
     "@backstage/plugin-lighthouse": "^0.2.0",
     "@backstage/plugin-newrelic": "^0.2.0",
     "@backstage/plugin-register-component": "^0.2.0",

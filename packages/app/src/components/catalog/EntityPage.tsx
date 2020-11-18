@@ -32,6 +32,7 @@ import {
   isPluginApplicableToEntity as isJenkinsAvailable,
   LatestRunCard as JenkinsLatestRunCard,
 } from '@backstage/plugin-jenkins';
+import { SonarQubeCard } from '@backstage/plugin-sonarqube';
 import {
   isPluginApplicableToEntity as isCircleCIAvailable,
   Router as CircleCIRouter,
@@ -151,6 +152,9 @@ const OverviewContent = ({ entity }: { entity: Entity }) => (
         </Grid>
       </>
     )}
+    <Grid item xs={12} sm={6} md={4}>
+      <SonarQubeCard entity={entity} />
+    </Grid>
     {isLighthouseAvailable(entity) && (
       <Grid item sm={4}>
         <LastLighthouseAuditCard variant="gridItem" />

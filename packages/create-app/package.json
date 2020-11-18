@@ -52,7 +52,6 @@
     "@backstage/plugin-lighthouse": "^0.2.0",
     "@backstage/plugin-proxy-backend": "^0.2.0",
     "@backstage/plugin-register-component": "^0.2.0",
-    "@backstage/plugin-rollbar-backend": "^0.1.2",
     "@backstage/plugin-scaffolder": "^0.2.0",
     "@backstage/plugin-scaffolder-backend": "^0.2.0",
     "@backstage/plugin-tech-radar": "^0.2.0",
