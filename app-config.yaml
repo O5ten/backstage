@@ -24,6 +24,7 @@ backend:
     credentials: true
   csp:
     connect-src: ["'self'", 'http:', 'https:']
+    img-src: ["'self'", "data:", "https://ghe.gc.telenor.com"]   
 
 proxy:
   '/jenkins/api':
