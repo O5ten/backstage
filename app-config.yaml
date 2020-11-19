@@ -87,6 +87,7 @@ catalog:
       providers:
         - target: https://ghe.gc.telenor.com
           apiBaseUrl: https://ghe.gc.telenor.com/api/v3
+          rawBaseUrl: https://ghe.gc.telenor.com/raw
           token:
             $env: GITHUB_TOKEN
 
