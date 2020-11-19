@@ -92,7 +92,7 @@ catalog:
 
 scaffolder:
   github:
-    apiBaseUrl: https://ghe.gc.telenor.com/api/v3
+    host: https://ghe.gc.telenor.com/api/v3
     token:
       $env: GITHUB_TOKEN
     visibility: public # or 'internal' or 'private'
