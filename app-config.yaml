@@ -8,7 +8,7 @@ backend:
   listen:
     port: 8080
   database:
-    client: postgres
+    client: pg
     connection:
       host: 
         $env: POSTGRES_HOST
@@ -113,3 +113,19 @@ homepage:
   clocks:
     - label: STO
       timezone: 'Europe/Stockholm'
+
+costInsights:
+  engineerCost: 200000
+  products:
+    computeEngine:
+      name: Compute Engine
+      icon: compute
+    cloudDataflow:
+      name: Cloud Dataflow
+      icon: data
+    cloudStorage:
+      name: Cloud Storage
+      icon: storage
+    bigQuery:
+      name: BigQuery
+      icon: search
