@@ -87,13 +87,12 @@ catalog:
       providers:
         - target: https://ghe.gc.telenor.com
           apiBaseUrl: https://ghe.gc.telenor.com/api/v3
-          rawBaseUrl: https://ghe.gc.telenor.com/raw
           token:
             $env: GITHUB_TOKEN
 
 scaffolder:
   github:
-    host: https://ghe.gc.telenor.com/api/v3
+    apiBaseUrl: https://ghe.gc.telenor.com/api/v3
     token:
       $env: GITHUB_TOKEN
     visibility: public # or 'internal' or 'private'
@@ -114,19 +113,3 @@ homepage:
   clocks:
     - label: STO
       timezone: 'Europe/Stockholm'
-
-costInsights:
-  engineerCost: 200000
-  products:
-    computeEngine:
-      name: Compute Engine
-      icon: compute
-    cloudDataflow:
-      name: Cloud Dataflow
-      icon: data
-    cloudStorage:
-      name: Cloud Storage
-      icon: storage
-    bigQuery:
-      name: BigQuery
-      icon: search
