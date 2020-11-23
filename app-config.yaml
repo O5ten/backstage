@@ -2,7 +2,6 @@ app:
   title: Backstage
   baseUrl: http://backstage.se.telenor.net
   googleAnalyticsTrackingId: # UA-000000-0
-
 backend:
   baseUrl: http://backstage.se.telenor.net:8080
   listen:
@@ -18,104 +17,71 @@ backend:
         $env: POSTGRES_USERNAME
       password: 
         $env: POSTGRES_PASSWORD
-  csp:
+  cors:
     connect-src: ["'self'", 'http:', 'https:']
     img-src: ["'self'", "data:", "https://ghe.gc.telenor.com"]   
     credentials: true
   csp:
     connect-src: ["'self'", 'http:', 'https:']
-  # workingDirectory: /tmp # Use this to configure a working directory for the scaffolder, defaults to the OS temp-dir
-
-# See README.md in the proxy-backend plugin for information on the configuration format
 proxy:
-  '/circleci/api':
-    target: https://circleci.com/api/v1.1
-    headers:
-      Circle-Token:
-        $env: CIRCLECI_AUTH_TOKEN
-
   '/jenkins/api':
-    target: http://localhost:8080
+    target: https://jenkins.se.telenor.net
     headers:
       Authorization:
         $env: JENKINS_BASIC_AUTH_HEADER
-
-  '/travisci/api':
-    target: https://api.travis-ci.com
-    changeOrigin: true
+  '/sonarqube':
+    target: https://sonar.se.telenor.net/api
+    allowedMethods: ['GET']
     headers:
-      Authorization:
-        $env: TRAVISCI_AUTH_TOKEN
-      travis-api-version: 3
-
-  '/newrelic/apm/api':
-    target: https://api.newrelic.com/v2
-    headers:
-      X-Api-Key:
-        $env: NEW_RELIC_REST_API_KEY
-
-  '/buildkite/api':
-    target: https://api.buildkite.com/v2/
-    headers:
-      Authorization:
-        $env: BUILDKITE_TOKEN
-
+      Authorization: 
+        $env: SONARQUBE_AUTH_HEADER
 organization:
   name: My Company
-
 techdocs:
   storageUrl: http://backstage.se.telenor.net:8080/api/techdocs/static/docs
   requestUrl: http://backstage.se.telenor.net:8080/api/techdocs
   generators:
     techdocs: local
-
 sonarQube:
   baseUrl: https://sonar.se.telenor.net
-
 sentry:
   organization: my-company
-
 kubernetes:
   serviceLocatorMethod: 'multiTenant'
-  clusterLocatorMethods:
+  clusterLocatorMethods: 
     - 'config'
   clusters: []
-
 integrations:
   github:
     - host: ghe.gc.telenor.com
       apiBaseUrl: https://ghe.gc.telenor.com/api/v3
       token:
         $env: GITHUB_TOKEN  
-
 catalog:
   rules:
     - allow: [Component, API, Group, User, Template, Location]
-
   processors:
     githubOrg:
       providers:
-        - target: https://github.com
+        - target: https://ghe.gc.telenor.com
           token:
             $env: GITHUB_TOKEN
-
 scaffolder:
   github:
     token:
       $env: GITHUB_TOKEN
-    visibility: public # or 'internal' or 'private'
-
+    target: https://ghe.gc.telenor.com
+    apiBaseUrl: https://ghe.gc.telenor.com/api/v3
+    visibility: public
 auth:
   providers:
     github:
       development:
+        enterpriseInstanceUrl: https://ghe.gc.telenor.com
         clientId:
           $env: AUTH_GITHUB_CLIENT_ID
         clientSecret:
           $env: AUTH_GITHUB_CLIENT_SECRET
-        enterpriseInstanceUrl:
-          $env: AUTH_GITHUB_ENTERPRISE_INSTANCE_URL
-
 costInsights:
   engineerCost: 200000
   products:

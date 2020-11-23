@@ -54,6 +54,23 @@ export interface Config {
     name?: string;
   };
 
+  integrations?: {
+    github?: {
+      /** @visibility frontend */
+      host: string;
+      /** @visibility frontend */
+      apiBaseUrl: string;
+    }[];
+  };
+
+  sonarQube?: {
+    /**
+     * The public absolute root URL that the frontend.
+     * @visibility frontend
+     */
+    baseUrl?: string;
+  };
+
   homepage?: {
     clocks?: {
       /** @visibility frontend */
