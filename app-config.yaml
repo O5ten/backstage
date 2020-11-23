@@ -38,15 +38,12 @@ proxy:
     headers:
       Authorization: 
         $env: SONARQUBE_AUTH_HEADER
-
-sonarQube:
-  baseUrl: https://sonar.se.telenor.net
-
   '/buildkite/api':
-    target: https://api.buildkite.com/v2/
-    headers:
-      Authorization:
-        $env: BUILDKITE_TOKEN
+      target: https://api.buildkite.com/v2/
+      headers:
+        Authorization:
+          $env: BUILDKITE_TOKEN
+
 
 organization:
   name: Telenor Sweden AB
@@ -56,6 +53,9 @@ techdocs:
   requestUrl: http://backstage.se.telenor.net:8080/api/techdocs
   generators:
     techdocs: local
+
+sonarQube:
+  baseUrl: https://sonar.se.telenor.net
 
 sentry:
   organization: my-company
@@ -106,9 +106,7 @@ auth:
         clientSecret:
           $env: AUTH_GITHUB_CLIENT_SECRET
         enterpriseInstanceUrl: https://ghe.gc.telenor.com
-    saml:
-      entryPoint: 'http://localhost:7001/'
-      issuer: 'passport-saml'
+
 homepage:
   clocks:
     - label: STO
