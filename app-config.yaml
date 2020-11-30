@@ -39,7 +39,7 @@ techdocs:
   storageUrl: http://localhost:7000/api/techdocs/static/docs
   requestUrl: http://localhost:7000/api/techdocs
   generators:
-    techdocs: 'local'
+    techdocs: local
 kubernetes:
   serviceLocatorMethod: 'multiTenant'
   clusterLocatorMethods:
