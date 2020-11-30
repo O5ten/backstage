@@ -64,6 +64,7 @@ catalog:
     githubOrg:
       providers:
         - target: https://ghe.gc.telenor.com
+          apiBaseUrl: https://ghe.gc.telenor.com/api/v3
           token:
             $env: GITHUB_TOKEN
 scaffolder:
