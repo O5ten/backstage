@@ -68,7 +68,8 @@ catalog:
             $env: GITHUB_TOKEN
 scaffolder:
   github:
-    host: https://ghe.gc.telenor.com/api/v3
+    apiBaseUrl: https://ghe.gc.telenor.com/api/v3
+    host: https://ghe.gc.telenor.com
     token:
       $env: GITHUB_TOKEN
     visibility: public
