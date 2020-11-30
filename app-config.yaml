@@ -36,8 +36,8 @@ proxy:
       Authorization: 
         $env: SONARQUBE_AUTH_HEADER
 techdocs:
-  storageUrl: http://localhost:7000/api/techdocs/static/docs
-  requestUrl: http://localhost:7000/api/techdocs
+  storageUrl: http://backstage.se.telenor.net:8080/api/techdocs/static/docs
+  requestUrl: http://backstage.se.telenor.net:8080/api/techdocs
   generators:
     techdocs: local
 kubernetes:
