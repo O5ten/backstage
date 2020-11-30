@@ -72,6 +72,11 @@ scaffolder:
     token:
       $env: GITHUB_TOKEN
     visibility: public
+  jenkins: 
+    username: 
+      $env: JENKINS_USERNAME
+    token: 
+      $env: JENKINS_ACCESS_TOKEN
 auth:
   providers:
     github:

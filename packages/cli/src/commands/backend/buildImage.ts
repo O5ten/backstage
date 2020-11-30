@@ -48,7 +48,7 @@ export default async (cmd: Command) => {
   console.log(`Dist workspace ready at ${tempDistWorkspace}`);
 
   // all args are forwarded to docker build
-  await run('docker', ['image', 'build', '.', ...cmd.args], {
+  await run('docker', ['--no-cache', 'image', 'build', '.', ...cmd.args], {
     cwd: tempDistWorkspace,
   });
 
