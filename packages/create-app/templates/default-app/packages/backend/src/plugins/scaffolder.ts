@@ -16,6 +16,7 @@ import {
 import { SingleHostDiscovery } from '@backstage/backend-common';
 import { Octokit } from '@octokit/rest';
 import { Gitlab } from '@gitbeaker/node';
+import { discoveryApiRef } from '@backstage/core';
 import type { PluginEnvironment } from '../types';
 import Docker from 'dockerode';
 
@@ -51,11 +52,15 @@ export default async function createPlugin({
 
       const githubToken = githubConfig.getString('token');
       const githubHost = githubConfig.getOptionalString('host');
+      const backendConfig = config.getConfig('backend');
+      const baseUrl = backendConfig.getString('baseUrl');
+
       const githubClient = new Octokit({ auth: githubToken, baseUrl: githubHost });
       const githubPublisher = new GithubPublisher({
         client: githubClient,
         token: githubToken,
         repoVisibility,
+        baseUrl,
       });
       publishers.register('file', githubPublisher);
       publishers.register('github', githubPublisher);

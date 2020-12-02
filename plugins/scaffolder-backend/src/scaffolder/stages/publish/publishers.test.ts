@@ -79,6 +79,7 @@ describe('Publishers', () => {
       client: new Octokit(),
       token: 'fake',
       repoVisibility: 'public',
+      baseUrl: 'test',
     });
     publishers.register('github', publisher);
 

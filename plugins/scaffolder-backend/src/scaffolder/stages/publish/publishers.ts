@@ -67,6 +67,7 @@ export class Publishers implements PublisherBuilder {
     const publishers = new Publishers(typeDetector);
 
     const githubConfig = config.getOptionalConfig('scaffolder.github');
+    const backendConfig = config.getConfig('backend');
     if (githubConfig) {
       try {
         const repoVisibility = githubConfig.getString(
@@ -74,6 +75,7 @@ export class Publishers implements PublisherBuilder {
         ) as RepoVisibilityOptions;
 
         const githubToken = githubConfig.getString('token');
+        const baseUrl = backendConfig.getString('baseUrl');
         const githubHost =
           githubConfig.getOptionalString('host') ?? 'https://api.github.com';
         const githubClient = new Octokit({
@@ -83,6 +85,7 @@ export class Publishers implements PublisherBuilder {
         const githubPublisher = new GithubPublisher({
           client: githubClient,
           token: githubToken,
+          baseUrl: baseUrl,
           repoVisibility,
         });
 

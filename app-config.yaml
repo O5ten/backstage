@@ -35,9 +35,9 @@ proxy:
     headers:
       Authorization: 
         $env: SONARQUBE_AUTH_HEADER
-  '/build-tools/publisher':
+  '/telenor':
     target: http://build-tools-publisher.paas-test.se.telenor.net
-    allowedMethods: ['GET']
+    allowedMethods: [ 'POST' ]
     headers:
       Authorization: 
         $env: JENKINS_PUBLISHER_ACCESSTOKEN

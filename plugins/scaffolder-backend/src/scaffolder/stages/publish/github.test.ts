@@ -47,6 +47,7 @@ describe('GitHub Publisher', () => {
       client: new Octokit(),
       token: 'abc',
       repoVisibility: 'public',
+      baseUrl: '',
     });
 
     describe('publish: createRemoteInGithub', () => {
@@ -195,6 +196,7 @@ describe('GitHub Publisher', () => {
       client: new Octokit(),
       token: 'abc',
       repoVisibility: 'internal',
+      baseUrl: '',
     });
 
     it('creates a private repository in the organization with visibility set to internal', async () => {
@@ -243,6 +245,7 @@ describe('GitHub Publisher', () => {
       client: new Octokit(),
       token: 'abc',
       repoVisibility: 'private',
+      baseUrl: '',
     });
 
     it('creates a private repository', async () => {

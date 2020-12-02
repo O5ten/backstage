@@ -19,6 +19,7 @@ import { Octokit } from '@octokit/rest';
 import { pushToRemoteUserPass } from './helpers';
 import { JsonValue } from '@backstage/config';
 import { RequiredTemplateValues } from '../templater';
+import fetch from 'cross-fetch';
 
 export type RepoVisibilityOptions = 'private' | 'internal' | 'public';
 
@@ -26,20 +27,24 @@ interface GithubPublisherParams {
   client: Octokit;
   token: string;
   repoVisibility: RepoVisibilityOptions;
+  baseUrl: string;
 }
 
 export class GithubPublisher implements PublisherBase {
   private client: Octokit;
   private token: string;
+  private baseUrl: string;
   private repoVisibility: RepoVisibilityOptions;
 
   constructor({
     client,
     token,
+    baseUrl,
     repoVisibility = 'public',
   }: GithubPublisherParams) {
     this.client = client;
     this.token = token;
+    this.baseUrl = baseUrl;
     this.repoVisibility = repoVisibility;
   }
 
@@ -58,8 +63,21 @@ export class GithubPublisher implements PublisherBase {
       /\.git$/,
       '/blob/master/catalog-info.yaml',
     );
-
+    await this.generateJenkinsProject(values);
     return { remoteUrl, catalogInfoUrl };
+  }
+
+  private async generateJenkinsProject(
+    values: RequiredTemplateValues & Record<string, JsonValue>,
+  ) {
+    const name = values.storePath.split('/')[1];
+    const response = await fetch(
+      `${this.baseUrl}/api/proxy/telenor/generate/jenkins/folder/${name}/for/${values.owner}`,
+      { method: 'POST' },
+    );
+    if (response.status !== 200) {
+      throw new Error(await response.text());
+    }
   }
 
   private async createRemote(
@@ -95,18 +113,16 @@ export class GithubPublisher implements PublisherBase {
         team_slug: team,
         owner,
         repo: name,
-        permission: 'admin',
+        permission: 'push',
       });
       // no need to add access if it's the person who own's the personal account
-    } else if (access && access !== owner) {
-      await this.client.repos.addCollaborator({
-        owner,
-        repo: name,
-        username: access,
-        permission: 'admin',
-      });
     }
-
+    await this.client.repos.addCollaborator({
+      owner,
+      repo: name,
+      username: values.owner,
+      permission: 'admin',
+    });
     return data?.clone_url;
   }
 }
