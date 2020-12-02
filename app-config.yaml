@@ -35,6 +35,12 @@ proxy:
     headers:
       Authorization: 
         $env: SONARQUBE_AUTH_HEADER
+  '/build-tools/publisher':
+    target: http://build-tools-publisher.paas-test.se.telenor.net
+    allowedMethods: ['GET']
+    headers:
+      Authorization: 
+        $env: JENKINS_PUBLISHER_ACCESSTOKEN
 techdocs:
   storageUrl: http://backstage.se.telenor.net:8080/api/techdocs/static/docs
   requestUrl: http://backstage.se.telenor.net:8080/api/techdocs
