@@ -36,6 +36,7 @@ export { plugin as Kubernetes } from '@backstage/plugin-kubernetes';
 export { plugin as Cloudbuild } from '@backstage/plugin-cloudbuild';
 export { plugin as CostInsights } from '@backstage/plugin-cost-insights';
 export { plugin as GitHubInsights } from '@roadiehq/backstage-plugin-github-insights';
+export { plugin as CatalogImport } from '@backstage/plugin-catalog-import';
 export { plugin as UserSettings } from '@backstage/plugin-user-settings';
 export { plugin as SonarQube } from '@backstage/plugin-sonarqube';
 export { plugin as Buildkite } from '@roadiehq/backstage-plugin-buildkite';

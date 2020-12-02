@@ -9,17 +9,17 @@ backend:
   database:
     client: pg
     connection:
-      host: 
+      host:
         $env: POSTGRES_HOST
-      port: 
+      port:
         $env: POSTGRES_PORT
-      user: 
+      user:
         $env: POSTGRES_USERNAME
-      password: 
+      password:
         $env: POSTGRES_PASSWORD
   cors:
     connect-src: ["'self'", 'http:', 'https:']
-    img-src: ["'self'", "data:", "https://ghe.gc.telenor.com"]   
+    img-src: ["'self'", "data:", "https://ghe.gc.telenor.com"]
     credentials: true
   csp:
     connect-src: ["'self'", 'http:', 'https:']
@@ -33,13 +33,13 @@ proxy:
     target: https://sonar.se.telenor.net/api
     allowedMethods: ['GET']
     headers:
-      Authorization: 
+      Authorization:
         $env: SONARQUBE_AUTH_HEADER
   '/telenor':
     target: http://build-tools-publisher.paas-test.se.telenor.net
     allowedMethods: [ 'POST' ]
     headers:
-      Authorization: 
+      Authorization:
         $env: JENKINS_PUBLISHER_ACCESSTOKEN
 techdocs:
   storageUrl: http://backstage.se.telenor.net:8080/api/techdocs/static/docs
@@ -60,7 +60,7 @@ integrations:
 sonarQube:
   baseUrl: https://sonar.se.telenor.net
 catalog:
-  locations: 
+  locations:
   - type: url
     target: https://ghe.gc.telenor.com/TelenorSweden/techdocs-template/blob/master/template.yaml
   - type: url
