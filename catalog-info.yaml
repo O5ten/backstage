@@ -6,8 +6,8 @@ metadata:
     Backstage is an open-source developer portal that puts the developer experience first.
   annotations:
     github.com/project-slug: TelenorSweden/backstage
-    jenkins.io/github-folder: backstage/pipeline/develop
-    backstage.io/techdocs-ref: dir:docs
+    jenkins.io/github-folder: backstage/pipeline
+    backstage.io/techdocs-ref: dir:./docs
 spec:
   type: website
   owner: Mikael-Ostberg
