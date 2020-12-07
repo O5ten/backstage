@@ -61,7 +61,13 @@ kubernetes:
   serviceLocatorMethod: 'multiTenant'
   clusterLocatorMethods:
     - 'config'
-  clusters: []
+  clusters: 
+    - url: https://ucp-test.se.telenor.net:6443
+      name: non-exposed-test
+      serviceAccountToken: 
+        $env: KUBERNETES_SERVICE_ACCOUNT_TOKEN
+      authProvider: 'serviceAccount'
+  
 integrations:
   github:
   - host: ghe.gc.telenor.com

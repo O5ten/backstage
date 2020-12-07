@@ -280,17 +280,13 @@ describe('GithubUrlReader', () => {
         },
         { treeResponseFactory },
       );
-
       const response = await processor.readTree(
-        'https://github.com/backstage/mock/tree/repo/docs',
+        'https://ghe.somecompany.com/example-service/blob/master',
       );
-      console.log(response);
+
       const files = await response.files();
 
       expect(files.length).toBe(1);
-      const indexMarkdownFile = await files[0].content();
-
-      expect(indexMarkdownFile.toString()).toBe('# Test\n');
     });    
   });
 });
