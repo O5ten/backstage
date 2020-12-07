@@ -271,5 +271,26 @@ describe('GithubUrlReader', () => {
 
       expect(indexMarkdownFile.toString()).toBe('# Test\n');
     });
+    it('uses the config-token in the fetch for an archive', async () => {
+      const processor = new GithubUrlReader(
+        {
+          host: 'ghe.somecompany.com',
+          apiBaseUrl: 'https://ghe.somecompany.com/api/v3',
+          token: 'some_token',
+        },
+        { treeResponseFactory },
+      );
+
+      const response = await processor.readTree(
+        'https://github.com/backstage/mock/tree/repo/docs',
+      );
+      console.log(response);
+      const files = await response.files();
+
+      expect(files.length).toBe(1);
+      const indexMarkdownFile = await files[0].content();
+
+      expect(indexMarkdownFile.toString()).toBe('# Test\n');
+    });    
   });
 });

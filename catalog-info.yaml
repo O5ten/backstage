@@ -7,7 +7,7 @@ metadata:
   annotations:
     github.com/project-slug: TelenorSweden/backstage
     jenkins.io/github-folder: backstage/pipeline
-    backstage.io/techdocs-ref: dir:./docs
+    backstage.io/techdocs-ref: url:https://ghe.gc.telenor.com/TelenorSweden/backstage/blob/master
 spec:
   type: website
   owner: Mikael-Ostberg

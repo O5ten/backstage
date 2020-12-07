@@ -71,6 +71,11 @@ export interface Config {
     baseUrl?: string;
   };
 
+  jira?: {
+    /** @visibility frontend */
+    apiVersion: number;
+  };
+
   homepage?: {
     clocks?: {
       /** @visibility frontend */

@@ -44,12 +44,6 @@ import {
 } from '@backstage/plugin-jenkins';
 import { SonarQubeCard } from '@backstage/plugin-sonarqube';
 import { Router as KubernetesRouter } from '@backstage/plugin-kubernetes';
-import {
-  EmbeddedRouter as LighthouseRouter,
-  isPluginApplicableToEntity as isLighthouseAvailable,
-  LastLighthouseAuditCard,
-} from '@backstage/plugin-lighthouse';
-import { Router as SentryRouter } from '@backstage/plugin-sentry';
 import { EmbeddedDocsRouter as DocsRouter } from '@backstage/plugin-techdocs';
 import { Button, Grid } from '@material-ui/core';
 import {
@@ -74,6 +68,10 @@ import {
   Router as TravisCIRouter,
 } from '@roadiehq/backstage-plugin-travis-ci';
 import React, { ReactNode } from 'react';
+import {
+  JiraCard,
+  isPluginApplicableToEntity as isJiraAvailable,
+} from '@roadiehq/backstage-plugin-jira';
 
 export const CICDSwitcher = ({ entity }: { entity: Entity }) => {
   // This component is just an example of how you can implement your company's logic in entity page.
@@ -155,17 +153,17 @@ const ComponentOverviewContent = ({ entity }: { entity: Entity }) => (
         </Grid>
       </>
     )}
-    <Grid item xs={12} sm={6} md={4}>
+    <Grid item xs={12} sm={6} md={6}>
       <SonarQubeCard entity={entity} />
     </Grid>
-    {isLighthouseAvailable(entity) && (
-      <Grid item sm={4}>
-        <LastLighthouseAuditCard variant="gridItem" />
+    {isPullRequestsAvailable(entity) && (
+      <Grid item sm={6}>
+        <PullRequestsStatsCard entity={entity} />
       </Grid>
     )}
-    {isPullRequestsAvailable(entity) && (
-      <Grid item sm={4}>
-        <PullRequestsStatsCard entity={entity} />
+    {isJiraAvailable(entity) && (
+      <Grid item md={6}>
+        <JiraCard entity={entity} />
       </Grid>
     )}
   </Grid>
@@ -182,11 +180,6 @@ const ServiceEntityPage = ({ entity }: { entity: Entity }) => (
       path="/ci-cd/*"
       title="CI/CD"
       element={<CICDSwitcher entity={entity} />}
-    />
-    <EntityPageLayout.Content
-      path="/sentry"
-      title="Sentry"
-      element={<SentryRouter entity={entity} />}
     />
     <EntityPageLayout.Content
       path="/api/*"
@@ -227,16 +220,6 @@ const WebsiteEntityPage = ({ entity }: { entity: Entity }) => (
       path="/ci-cd/*"
       title="CI/CD"
       element={<CICDSwitcher entity={entity} />}
-    />
-    <EntityPageLayout.Content
-      path="/lighthouse/*"
-      title="Lighthouse"
-      element={<LighthouseRouter entity={entity} />}
-    />
-    <EntityPageLayout.Content
-      path="/sentry"
-      title="Sentry"
-      element={<SentryRouter entity={entity} />}
     />
     <EntityPageLayout.Content
       path="/docs/*"

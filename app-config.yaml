@@ -23,6 +23,8 @@ backend:
     credentials: true
   csp:
     connect-src: ["'self'", 'http:', 'https:']
+jira:
+  apiVersion: 2
 proxy:
   '/jenkins/api':
     target: https://jenkins.se.telenor.net
@@ -41,6 +43,15 @@ proxy:
     headers:
       Authorization:
         $env: JENKINS_PUBLISHER_ACCESSTOKEN
+  '/jira/api':
+    target: https://jira.se.telenor.net
+    headers:
+      Authorization:
+        $env: JIRA_AUTH_HEADER
+      Accept: 'application/json'
+      Content-Type: 'application/json'
+      X-Atlassian-Token: 'no-check'
+      User-Agent: "backstage"
 techdocs:
   storageUrl: http://backstage.se.telenor.net:8080/api/techdocs/static/docs
   requestUrl: http://backstage.se.telenor.net:8080/api/techdocs
